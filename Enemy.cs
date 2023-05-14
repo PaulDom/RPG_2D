@@ -17,8 +17,14 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    public void Update()
+    private void Update()
     {
-         transform.position += -transform.right* speed * Time.deltaTime;
+        float enemyPosX = transform.position.x;
+        float cornPosX = Corn.singleton.transform.position.x;
+
+        if (enemyPosX > cornPosX)
+        {
+            transform.position += directionMove* speed * Time.deltaTime;
+        } 
     }
 }
