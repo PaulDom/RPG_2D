@@ -20,6 +20,12 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        transform.position += directionMove* speed * Time.deltaTime;
+        float enemyPosX = transform.position.x;
+        float cornPosX = Corn.singleton.transform.position.x;
+
+        if (enemyPosX > cornPosX)
+        {
+            transform.position += directionMove* speed * Time.deltaTime;
+        } 
     }
 }
