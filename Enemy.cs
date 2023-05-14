@@ -5,8 +5,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed = 0.5f;
+    private float cornPosX;
     public int health = 4;
     public Animator animator;
+    public float shootInterval = 1f;
+    public float shootTimer = 1f;
 
     public void TakeDamage()
     {
@@ -18,10 +21,20 @@ public class Enemy : MonoBehaviour
         }
     }
     
+    private void Start()
+    {
+        cornPosX = Corn.singleton.transform.position.x;
+    }
+    
+    public void Attack()
+    {
+        Corn.singleton.TakeDamage();
+    }
+    
     private void Update()
     {
+        shootTimer += Time.deltaTime;
         float enemyPosX = transform.position.x;
-        float cornPosX = Corn.singleton.transform.position.x;
 
         if (enemyPosX > cornPosX)
         {
@@ -31,6 +44,11 @@ public class Enemy : MonoBehaviour
         else
         {
             animator.SetBool("isMoving", false);
+            if (shootTimer >= shootInterval)
+            {
+                Attack();
+                shootTimer = 0;
+            }
         }
     }
 }
