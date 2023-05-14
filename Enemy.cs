@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 0.5f;
+    public Vector3 directionMove;
+    public float speed = 1;
     public int health = 4;
 
     public void TakeDamage()
@@ -16,9 +17,9 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-    public void Update()
+
+    private void Update()
     {
-         transform.position += -transform.right* speed * Time.deltaTime;
+        transform.position += directionMove* speed * Time.deltaTime;
     }
 }
