@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 0.5f;
     public int health = 4;
+    public Animator animator;
 
     public void TakeDamage()
     {
@@ -24,7 +25,12 @@ public class Enemy : MonoBehaviour
 
         if (enemyPosX > cornPosX)
         {
+            animator.SetBool("isMoving", true);
             transform.position += -transform.right* speed * Time.deltaTime;
         } 
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
     }
 }
