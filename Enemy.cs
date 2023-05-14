@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
 
         if (enemyPosX > cornPosX)
         {
-            transform.position += directionMove* speed * Time.deltaTime;
+            transform.position += -transform.right* speed * Time.deltaTime;
         } 
     }
 }
