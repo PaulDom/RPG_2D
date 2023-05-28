@@ -6,6 +6,7 @@ public class Corn : MonoBehaviour
 {
     public static Corn singleton;
     public int health = 100;
+    public int crystals = 0;
 
     private void Awake()
     {
