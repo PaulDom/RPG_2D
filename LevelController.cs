@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
     public Spawner spawnerScript;
     public static bool finished = false;
     public static int level = 1;
+
+    public GameObject victoryPanel;
+    public GameObject defeatPanel;
 
     private void Start()
     {
@@ -40,15 +44,26 @@ public class LevelController : MonoBehaviour
 
     private void Victory()
     {
-        print("Win");
+        victoryPanel.SetActive(true);
         finished = true;
         level++;
     }
 
     private void Defeat()
     {
-        print("Defeat");
+        defeatPanel.SetActive(true);
         finished = true;
         level = 1;
+    }
+
+    public void RestartLevel()
+    {
+        int index = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(index);
+    }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 }
