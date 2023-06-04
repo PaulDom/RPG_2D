@@ -12,6 +12,12 @@ public class LevelController : MonoBehaviour
     public GameObject victoryPanel;
     public GameObject defeatPanel;
 
+    public void Awake()
+    {
+        level = PlayerPrefs.GetInt("level", 1);
+    }
+
+
     private void Start()
     {
         finished = false;
@@ -47,6 +53,7 @@ public class LevelController : MonoBehaviour
         victoryPanel.SetActive(true);
         finished = true;
         level++;
+        GameController.SaveLevel();
     }
 
     private void Defeat()

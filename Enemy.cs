@@ -14,14 +14,22 @@ public class Enemy : MonoBehaviour
     public float shootInterval = 1f;
     public float shootTimer = 1f;
 
-    public void TakeDamage()
-    {
-        health -= 1;
+    public int price_for_kill = 2;
 
-        if (health == 0)
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
         {
-            Destroy(gameObject);
+            Die();
         }
+    }
+    
+    public void Die()
+    {
+        Corn.singleton.AddCrystals(price_for_kill);
+        Destroy(gameObject);
     }
 
     private void Start()

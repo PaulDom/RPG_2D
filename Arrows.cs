@@ -5,10 +5,12 @@ using UnityEngine;
 public class Arrows : MonoBehaviour
 {
     public float speed = 1;
+    public int arrows_damage = 1;
 
     private void Start()
     {
         Destroy(gameObject, 5f);
+        arrows_damage = PlayerPrefs.GetInt("arrows_damage", 1);
     }
 
     void Update()
@@ -21,7 +23,8 @@ public class Arrows : MonoBehaviour
         if (collision.tag == "Enemy")
         {
             Enemy enemyScript = collision.GetComponent<Enemy>();
-            enemyScript.TakeDamage();
+            enemyScript.TakeDamage(arrows_damage);
+            print("Мы нанесли врагу" + arrows_damage + "урона стрелой");
             Destroy(gameObject);
         }
     }
